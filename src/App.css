@@ -1,0 +1,498 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #ffffff 0%, #fff5eb 100%);
+  color: #333333;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 添加背景點陣圖案 */
+.App::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at center, rgba(255, 107, 0, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.hero-section {
+  margin-bottom: 1rem;
+  padding-top: 0.5rem;
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto 1rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background: #ff6b00;
+  color: white;
+  border: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #ff6b00;
+  border: 1px solid #ff6b00;
+}
+
+.animation-container {
+  position: relative;
+  height: 300px;
+  margin-top: 0;
+  flex-grow: 1;
+  min-height: 280px;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2rem;
+}
+
+.center-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  overflow: hidden;
+  box-shadow: 
+    0 0 30px rgba(255, 107, 0, 0.3),
+    0 0 60px rgba(255, 107, 0, 0.2),
+    0 0 90px rgba(255, 107, 0, 0.1);
+}
+
+.center-logo img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  filter: brightness(0.95);
+}
+
+.center-logo::after {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 107, 0, 0.3) 0%,
+    rgba(255, 107, 0, 0.2) 30%,
+    rgba(255, 107, 0, 0) 70%
+  );
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.center-logo::before {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 107, 0, 0.2) 0%,
+    rgba(255, 107, 0, 0.15) 30%,
+    rgba(255, 107, 0, 0) 70%
+  );
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+}
+
+.floating-image {
+  position: absolute;
+  left: var(--initial-x);
+  transform: scale(var(--scale)) rotate(var(--angle));
+  animation: floatIn 5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: var(--delay);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 107, 0, 0.2);
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  will-change: transform, left, opacity, top, clip-path;
+  font-size: 0.9rem;
+}
+
+@keyframes floatIn {
+  0% {
+    left: -10%;
+    top: var(--initial-y);
+    opacity: 1;
+    transform: rotate(var(--angle));
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  3% {
+    left: 0;
+    top: var(--initial-y);
+    opacity: 1;
+    transform: rotate(var(--angle));
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  60% {
+    left: 35%;
+    opacity: 1;
+    transform: rotate(0deg);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  75% {
+    left: 38%;
+    top: 45%;
+    opacity: 1;
+    transform: rotate(0deg);
+    clip-path: polygon(0% 0%, 85% 0%, 85% 100%, 0% 100%);
+  }
+  85% {
+    left: 41%;
+    top: 45%;
+    opacity: 1;
+    transform: rotate(0deg);
+    clip-path: polygon(0% 0%, 60% 0%, 40% 100%, 0% 100%);
+  }
+  95% {
+    left: 44%;
+    top: 45%;
+    opacity: 1;
+    transform: rotate(0deg);
+    clip-path: polygon(0% 0%, 30% 0%, 15% 100%, 0% 100%);
+  }
+  100% {
+    left: 46%;
+    top: 45%;
+    opacity: 0;
+    transform: rotate(0deg);
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  }
+}
+
+/* 新增向右飄移的圖片樣式 */
+.right-floating-image {
+  position: absolute;
+  left: calc(50% + 40px);
+  top: 55%;
+  transform: translateY(-50%) scale(var(--scale)) rotate(var(--initial-angle));
+  animation: floatToRight 6s linear forwards;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 107, 0, 0.2);
+  padding: 0.8rem;
+  border-radius: 8px;
+  will-change: transform, left, opacity;
+  z-index: 5;
+}
+
+.right-floating-image img {
+  width: 160px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Web 版本的動畫 */
+@keyframes floatToRight {
+  0% {
+    left: calc(50% + 40px);
+    top: 55%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+    left: 75%; /* 調整為更靠左的位置 */
+    top: 55%;
+  }
+  100% {
+    left: 90%; /* 調整消失位置 */
+    top: 55%;
+    opacity: 0;
+  }
+}
+
+/* RWD 調整 */
+@media screen and (max-width: 768px) {
+  .App {
+    padding: 1rem;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-section {
+    margin-bottom: 0.5rem;
+    padding-top: 0;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    margin: 0 auto 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .animation-container {
+    height: 250px;
+    min-height: 250px;
+    padding-top: 0;
+    flex: 1;
+    overflow: visible;
+    position: relative;
+  }
+
+  .right-floating-image {
+    padding: 1rem;
+    left: calc(50% + 20px);
+    top: 60%;
+    transform-origin: left center;
+    z-index: 6;
+  }
+
+  .right-floating-image img {
+    width: 300px;
+    height: auto;
+  }
+
+  @keyframes floatToRight {
+    0% {
+      left: calc(50% + 20px);
+      top: 60%;
+      opacity: 0;
+      transform: translateY(-50%) scale(var(--scale)) rotate(var(--initial-angle));
+    }
+    5% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+      left: 60%; /* 調整為更靠左的位置 */
+      top: 60%;
+    }
+    100% {
+      left: 75%; /* 調整消失位置 */
+      top: 60%;
+      opacity: 0;
+    }
+  }
+}
+
+/* 更小螢幕的調整 */
+@media screen and (max-width: 480px) {
+  .hero-section {
+    flex: 2;
+    margin-bottom: 0;
+    padding-top: 0;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .subtitle {
+    margin: 0 auto 1rem;
+  }
+
+  .cta-buttons {
+    margin-top: 0.8rem;
+  }
+
+  .animation-container {
+    height: 180px;
+    min-height: 180px;
+    padding-top: 0;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+  }
+
+  .center-logo {
+    top: 40%;
+  }
+
+  .right-floating-image {
+    left: calc(50% + 30px);
+    top: 40%;
+    transform: translateY(-50%) scale(0.8);
+  }
+
+  .right-floating-image img {
+    width: 240px;
+  }
+
+  @keyframes floatToRight {
+    0% {
+      left: calc(50% + 30px);
+      top: 40%;
+      opacity: 0;
+      transform: translateY(-50%) scale(0.8) rotate(var(--initial-angle));
+    }
+    5% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+      left: 100%;
+      top: 40%;
+    }
+    100% {
+      left: 120%;
+      top: 40%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes floatIn {
+    0% {
+      left: -10%;
+      top: var(--initial-y);
+      opacity: 1;
+      transform: rotate(var(--angle));
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+    3% {
+      left: 0;
+      top: var(--initial-y);
+      opacity: 1;
+      transform: rotate(var(--angle));
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+    60% {
+      left: 26%;
+      opacity: 1;
+      transform: rotate(0deg);
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+    75% {
+      left: 27%;
+      top: 40%;
+      opacity: 1;
+      transform: rotate(0deg);
+      clip-path: polygon(0% 0%, 85% 0%, 85% 100%, 0% 100%);
+    }
+    85% {
+      left: 28%;
+      top: 40%;
+      opacity: 1;
+      transform: rotate(0deg);
+      clip-path: polygon(0% 0%, 60% 0%, 40% 100%, 0% 100%);
+    }
+    95% {
+      left: 29%;
+      top: 40%;
+      opacity: 1;
+      transform: rotate(0deg);
+      clip-path: polygon(0% 0%, 30% 0%, 15% 100%, 0% 100%);
+    }
+    100% {
+      left: 30%;
+      top: 40%;
+      opacity: 0;
+      transform: rotate(0deg);
+      clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+    }
+  }
+
+  .floating-image {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .center-logo {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* 平板尺寸的調整 */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .right-floating-image {
+    left: calc(50% + 25px);
+    top: 60%;
+  }
+
+  @keyframes floatToRight {
+    0% {
+      left: calc(50% + 25px);
+      top: 60%;
+      opacity: 0;
+      transform: translateY(-50%) scale(var(--scale)) rotate(var(--initial-angle));
+    }
+    5% {
+      opacity: 1;
+    }
+    40% {
+      left: 65%;
+      opacity: 1;
+    }
+    80% {
+      left: 75%;
+      opacity: 1;
+    }
+    100% {
+      left: 85%;
+      top: 60%;
+      opacity: 0;
+    }
+  }
+}
